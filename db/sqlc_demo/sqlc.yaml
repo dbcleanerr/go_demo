@@ -1,7 +1,8 @@
-version: 1
+version: "1"
 packages:
-  - path: "db"
-    name: "db"
-    engine: "postgresql"
-    schema: "schema.sql"
-    queries: "query.sql"
+    - name: "db"
+      path: "db"
+      queries: "query.sql"
+      schema: "schema.sql"
+      engine: "postgresql"
+      emit_prepared_queries: true
