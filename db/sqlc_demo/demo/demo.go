@@ -5,12 +5,12 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/lib/pq"
-	"go_demo/db/sqlc_demo/db"
+	"go_demo/db/sqlc_demo/db/sqlc"
 	"log"
 )
 
 func main() {
-	conn, err := sql.Open("postgres", "dbname=db01 host=192.168.1.112 port=9981 user=test password=welcome sslmode=disable")
+	conn, err := sql.Open("postgres", "dbname=db01 host=127.0.0.1 port=5432 user=test password=welcome sslmode=disable")
 	if err != nil {
 		log.Fatal(err)
 	}
