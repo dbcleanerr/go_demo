@@ -1,0 +1,5 @@
+mode: set
+go_demo/test/testDemo/demo.go:3.24,5.2 1 1
+go_demo/test/testDemo/demo.go:7.24,9.2 1 1
+go_demo/test/testDemo/demo_auto_generate.go:3.25,5.2 1 1
+go_demo/test/testDemo/demo_auto_generate.go:7.25,9.2 1 0

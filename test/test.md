@@ -21,6 +21,33 @@ PS D:\git\go\go_demo\test\testDemo> go test -v
 PASS
 ok      go_demo/test/testDemo   0.025s
 
+# -run 只测试指定的函数，正则匹配
+PS D:\git\go\go_demo\test\testDemo> go test -v -run "Squ"
+=== RUN   TestSquare
+--- PASS: TestSquare (0.00s)
+PASS
+ok      go_demo/test/testDemo   0.032s
+
+# cover 覆盖率
+# coverprofile=c.out
+PS D:\git\go\go_demo\test\testDemo> go test -cover  
+PASS
+coverage: 100.0% of statements
+ok      go_demo/test/testDemo   0.040s
+
+# bench 基准测试
+# -bench=. 为全部可测的函数，也可以 -bench=Add 只测试指定函数
+# -benchmem 内存信息
+# -benchtime=20s 最小基准时间，默认为1秒
+D:\git\go\go_demo\test\testDemo>go test -bench=. -benchmem
+goos: windows
+goarch: amd64
+pkg: go_demo/test/testDemo
+cpu: Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz
+BenchmarkAdd-8          1000000000               0.2562 ns/op          0 B/op          0 allocs/op
+BenchmarkSquare-8       1000000000               0.2589 ns/op          0 B/op          0 allocs/op
+PASS
+ok      go_demo/test/testDemo   0.616s
 ```
 
 #### 函数类型
