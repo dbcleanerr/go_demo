@@ -17,7 +17,36 @@ func main() {
 
 	defer conn.Close()
 
-	queries := db.New(conn)
+	tx, err := conn.Begin()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer tx.Rollback()
+
+	q := db.New(tx)
+
+	dept, err := q.GetDept(context.Background(), 12)
+	if err != nil {
+		log.Println("get dept error,", err)
+	}
+
+	fmt.Println(dept)
+
+	args := db.UpdateGetDeptParams{
+		Dname:  "9981",
+		Loc:    "hz",
+		Deptno: 12,
+	}
+	
+	dept2, err := q.UpdateGetDept(context.Background(), args)
+	if err != nil {
+		log.Println("update dept error,", err)
+	}
+
+	fmt.Println(dept2)
+
+	tx.Commit()
 
 	//// select 多行记录
 	//fmt.Println("------------------- select many rows -------------------")
@@ -31,12 +60,12 @@ func main() {
 	//}
 	//
 	// select 单行记录
-	fmt.Println("------------------- select one row -------------------")
-	author, err := queries.GetAuthor(context.Background(), 7)
-	if err != nil {
-		log.Printf("query error, %s", err)
-	}
-	fmt.Println(author)
+	//fmt.Println("------------------- select one row -------------------")
+	//author, err := queries.GetAuthor(context.Background(), 7)
+	//if err != nil {
+	//	log.Printf("query error, %s", err)
+	//}
+	//fmt.Println(author)
 
 	//// select in array
 	//fmt.Println("------------------- select many rows by IDS -------------------")
@@ -92,21 +121,21 @@ func main() {
 	//fmt.Println(updateGetAuthor)
 
 	// prepar query
-	fmt.Println("------------------- preparing queries --------------------------")
-	prepare, err := db.Prepare(context.Background(), conn)
-	if err != nil {
-		log.Fatal("prepare error,", err)
-	}
-
-	auth7, err := prepare.GetAuthor(context.Background(), 7)
-	if err != nil {
-		log.Printf("preparing select error, %s", err)
-	}
-	fmt.Println(auth7)
-
-	auth8, err := prepare.GetAuthor(context.Background(), 8)
-	if err != nil {
-		log.Printf("preparing select error, %s", err)
-	}
-	fmt.Println(auth8)
+	//fmt.Println("------------------- preparing queries --------------------------")
+	//prepare, err := db.Prepare(context.Background(), conn)
+	//if err != nil {
+	//	log.Fatal("prepare error,", err)
+	//}
+	//
+	//auth7, err := prepare.GetAuthor(context.Background(), 7)
+	//if err != nil {
+	//	log.Printf("preparing select error, %s", err)
+	//}
+	//fmt.Println(auth7)
+	//
+	//auth8, err := prepare.GetAuthor(context.Background(), 8)
+	//if err != nil {
+	//	log.Printf("preparing select error, %s", err)
+	//}
+	//fmt.Println(auth8)
 }
