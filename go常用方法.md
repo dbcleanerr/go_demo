@@ -31,3 +31,11 @@ GOOS=windows
 GOARCH=amd64 
 go build main.go
 ```
+
+### docker 搭建 ubuntu 开发环境
+
+```shell
+docker pull debian:latest
+
+docker run --name debian -h dev -e LANG=en_US.UTF-8 -it debian:latest /bin/bash -l
+```
