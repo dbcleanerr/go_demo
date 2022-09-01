@@ -9,3 +9,5 @@ packages:
       emit_prepared_queries: false
       emit_interface: false
       emit_exact_table_names: false
+      # 空记录返回 [] 而不是null
+      emit_empty_slices: true
