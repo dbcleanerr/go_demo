@@ -1,8 +1,8 @@
-package database_sql
+package db
 
 import "time"
 
-type Users struct {
+type User struct {
 	UserName         string    `json:"user_name"`
 	HashedPassword   string    `json:"hashed_password"`
 	FullName         string    `json:"full_name"`
